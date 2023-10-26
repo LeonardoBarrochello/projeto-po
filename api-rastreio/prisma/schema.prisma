@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../database/api-rastreio.db"
+}
+
+
+model Dispositivo {
+  id       String    @id @default(uuid()) 
+  nome     String
+  codigo   String    @unique
+  ativo    Boolean
+  marca    String
+  localizacoes Localizacao[]
+}
+
+model Localizacao {
+  id              String @id @default(uuid())
+  id_dispositivo String
+  latitude        Float
+  longitude       Float
+  created_at      DateTime @default(now())
+  dispositivo     Dispositivo @relation(fields: [id_dispositivo], references: [id])
+}
