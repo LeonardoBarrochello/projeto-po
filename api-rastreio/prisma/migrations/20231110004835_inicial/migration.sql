@@ -14,7 +14,7 @@ CREATE TABLE "Localizacao" (
     "latitude" REAL NOT NULL,
     "longitude" REAL NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "Localizacao_id_dispositivo_fkey" FOREIGN KEY ("id_dispositivo") REFERENCES "Dispositivo" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Localizacao_id_dispositivo_fkey" FOREIGN KEY ("id_dispositivo") REFERENCES "Dispositivo" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex

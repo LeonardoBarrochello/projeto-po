@@ -7,24 +7,23 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:../database/api-rastreio.db"
+  url      = "file:../database/api-rastreio.db?connection_limit=50"
 }
 
-
 model Dispositivo {
-  id       String    @id @default(uuid()) 
-  nome     String
-  codigo   String    @unique
-  ativo    Boolean
-  marca    String
+  id           String        @id @default(uuid())
+  nome         String
+  codigo       String        @unique
+  ativo        Boolean
+  marca        String
   localizacoes Localizacao[]
 }
 
 model Localizacao {
-  id              String @id @default(uuid())
+  id             String      @id @default(uuid())
   id_dispositivo String
-  latitude        Float
-  longitude       Float
-  created_at      DateTime @default(now())
-  dispositivo     Dispositivo @relation(fields: [id_dispositivo], references: [id])
+  latitude       Float
+  longitude      Float
+  created_at     DateTime    @default(now())
+  dispositivo    Dispositivo @relation(fields: [id_dispositivo], references: [id], onDelete: Cascade)
 }
