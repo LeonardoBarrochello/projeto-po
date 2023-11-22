@@ -46,10 +46,7 @@ const SocketComponent = () => {
             height: "100%",
           }}
         >
-          <p>
-            Última Localização Recebida: {location.latitude},
-            {location.longitude}
-          </p>
+         
 
           <iframe
             width="100%"

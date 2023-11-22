@@ -1,14 +1,22 @@
 const amqp = require("amqplib");
 const { addToCache } = require("../cache/cache.js");
 const { prismaClient } = require("../prismaClient.js");
+const io = require("../server.js");
 const rabbitmqHost = "amqp://guest:guest@localhost:5672";
 
 async function connectToRabbitMQ() {
   try {
-    const connection = await amqp.connect(rabbitmqHost);
-    const channel = await connection.createChannel();
+    const connection = await amqp.connect(rabbitmqHost).catch((e) =>  console.log("NÃO FOI POSSÍVEL CONECTAR O CLIENT DO RABBITMQ!"));
+    
+    if(!connection){
 
+      return null;
+    }
+    
+    const channel = await connection.createChannel();
     return channel;
+
+
   } catch (error) {
     console.error("Erro ao conectar ao RabbitMQ:", error);
   }
@@ -56,7 +64,6 @@ async function consumeQueue(channel) {
             });
           }
         }
-
         channel.ack(message);
       }
     });

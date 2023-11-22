@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start-all" : "node api-dados/index.js && node api-rastreio/server.js && node broker/index.js && node cliente/index.js"
   },
   "keywords": [],
   "author": "",

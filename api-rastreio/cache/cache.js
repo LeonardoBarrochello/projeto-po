@@ -16,7 +16,8 @@ async function addToCache(deviceId, location) {
 }
 
 async function connect() {
-  await client.connect();
+  console.log("entrou aqs")
+  await client.connect().then(() => null).catch((e) => console.log("NÃO FOI POSSÍVEL CONECTAR O CLIENT DO REDIS!" , e.message ));
 }
 
 async function getFromCache(deviceId) {

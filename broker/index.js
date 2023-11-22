@@ -16,6 +16,7 @@ aedes.on('clientDisconnect', (client) => {
 });
 
 aedes.on('publish', (packet, client) => {
+  console.log("recebido" , packet)
   if (client) {
     aedes.publish({
       topic: packet.topic,
